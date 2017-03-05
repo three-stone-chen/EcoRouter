@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE5E0CBB1E6BFB02007AE9F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CBA1E6BFB02007AE9F0 /* main.m */; };
+		CE5E0CBE1E6BFB02007AE9F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CBD1E6BFB02007AE9F0 /* AppDelegate.m */; };
+		CE5E0CC11E6BFB02007AE9F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CC01E6BFB02007AE9F0 /* MainViewController.m */; };
+		CE5E0CC41E6BFB02007AE9F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CC21E6BFB02007AE9F0 /* Main.storyboard */; };
+		CE5E0CC61E6BFB02007AE9F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CC51E6BFB02007AE9F0 /* Assets.xcassets */; };
+		CE5E0CC91E6BFB02007AE9F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CC71E6BFB02007AE9F0 /* LaunchScreen.storyboard */; };
+		CE5E0CD61E6BFB82007AE9F0 /* EcoRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CD51E6BFB82007AE9F0 /* EcoRouter.m */; };
+		CE5E0CDF1E6C02EB007AE9F0 /* ModuleARouter.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CDE1E6C02EB007AE9F0 /* ModuleARouter.plist */; };
+		CE5E0CE21E6C035F007AE9F0 /* ModuleAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CE11E6C035F007AE9F0 /* ModuleAViewController.m */; };
+		CE5E0CE91E6C03F3007AE9F0 /* ModuleBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CE51E6C03F3007AE9F0 /* ModuleBViewController.m */; };
+		CE5E0CEA1E6C03F3007AE9F0 /* ModuleBRouter.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CE71E6C03F3007AE9F0 /* ModuleBRouter.plist */; };
+		CE6B9FFF1E6C05F70092FC8D /* ModuleARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B9FFE1E6C05F70092FC8D /* ModuleARootViewController.m */; };
+		CE6BA0021E6C07010092FC8D /* RouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA0011E6C07010092FC8D /* RouterTool.m */; };
+		CE6BA0061E6C07300092FC8D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA0051E6C07300092FC8D /* BaseViewController.m */; };
+		CE6BA0091E6C09C20092FC8D /* ModuleBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA0081E6C09C20092FC8D /* ModuleBRootViewController.m */; };
+		CE6BA00B1E6C0A2A0092FC8D /* router.html in Resources */ = {isa = PBXBuildFile; fileRef = CE6BA00A1E6C0A2A0092FC8D /* router.html */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CE5E0CB61E6BFB02007AE9F0 /* EcoRouterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoRouterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE5E0CBA1E6BFB02007AE9F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CE5E0CBC1E6BFB02007AE9F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CE5E0CBD1E6BFB02007AE9F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CE5E0CBF1E6BFB02007AE9F0 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		CE5E0CC01E6BFB02007AE9F0 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		CE5E0CC31E6BFB02007AE9F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE5E0CC51E6BFB02007AE9F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE5E0CC81E6BFB02007AE9F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE5E0CCA1E6BFB02007AE9F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE5E0CD41E6BFB82007AE9F0 /* EcoRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EcoRouter.h; sourceTree = "<group>"; };
+		CE5E0CD51E6BFB82007AE9F0 /* EcoRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EcoRouter.m; sourceTree = "<group>"; };
+		CE5E0CDE1E6C02EB007AE9F0 /* ModuleARouter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModuleARouter.plist; sourceTree = "<group>"; };
+		CE5E0CE01E6C035F007AE9F0 /* ModuleAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleAViewController.h; sourceTree = "<group>"; };
+		CE5E0CE11E6C035F007AE9F0 /* ModuleAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleAViewController.m; sourceTree = "<group>"; };
+		CE5E0CE41E6C03F3007AE9F0 /* ModuleBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleBViewController.h; sourceTree = "<group>"; };
+		CE5E0CE51E6C03F3007AE9F0 /* ModuleBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleBViewController.m; sourceTree = "<group>"; };
+		CE5E0CE71E6C03F3007AE9F0 /* ModuleBRouter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModuleBRouter.plist; sourceTree = "<group>"; };
+		CE6B9FFD1E6C05F70092FC8D /* ModuleARootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleARootViewController.h; sourceTree = "<group>"; };
+		CE6B9FFE1E6C05F70092FC8D /* ModuleARootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleARootViewController.m; sourceTree = "<group>"; };
+		CE6BA0001E6C07010092FC8D /* RouterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterTool.h; sourceTree = "<group>"; };
+		CE6BA0011E6C07010092FC8D /* RouterTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTool.m; sourceTree = "<group>"; };
+		CE6BA0041E6C07300092FC8D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		CE6BA0051E6C07300092FC8D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		CE6BA0071E6C09C20092FC8D /* ModuleBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleBRootViewController.h; sourceTree = "<group>"; };
+		CE6BA0081E6C09C20092FC8D /* ModuleBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleBRootViewController.m; sourceTree = "<group>"; };
+		CE6BA00A1E6C0A2A0092FC8D /* router.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = router.html; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE5E0CB31E6BFB02007AE9F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE5E0CAD1E6BFB02007AE9F0 = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CB81E6BFB02007AE9F0 /* EcoRouterDemo */,
+				CE5E0CB71E6BFB02007AE9F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CE5E0CB71E6BFB02007AE9F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CB61E6BFB02007AE9F0 /* EcoRouterDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE5E0CB81E6BFB02007AE9F0 /* EcoRouterDemo */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CBC1E6BFB02007AE9F0 /* AppDelegate.h */,
+				CE5E0CBD1E6BFB02007AE9F0 /* AppDelegate.m */,
+				CE5E0CBF1E6BFB02007AE9F0 /* MainViewController.h */,
+				CE5E0CC01E6BFB02007AE9F0 /* MainViewController.m */,
+				CE6BA00A1E6C0A2A0092FC8D /* router.html */,
+				CE5E0CD01E6BFB68007AE9F0 /* Common */,
+				CE5E0CD21E6BFB68007AE9F0 /* ModuleA */,
+				CE5E0CD31E6BFB68007AE9F0 /* ModuleB */,
+				CE5E0CC21E6BFB02007AE9F0 /* Main.storyboard */,
+				CE5E0CC51E6BFB02007AE9F0 /* Assets.xcassets */,
+				CE5E0CC71E6BFB02007AE9F0 /* LaunchScreen.storyboard */,
+				CE5E0CCA1E6BFB02007AE9F0 /* Info.plist */,
+				CE5E0CB91E6BFB02007AE9F0 /* Supporting Files */,
+			);
+			path = EcoRouterDemo;
+			sourceTree = "<group>";
+		};
+		CE5E0CB91E6BFB02007AE9F0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CBA1E6BFB02007AE9F0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE5E0CD01E6BFB68007AE9F0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CD11E6BFB68007AE9F0 /* Router */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CE5E0CD11E6BFB68007AE9F0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				CE6BA0031E6C07300092FC8D /* BaseViewController */,
+				CE5E0CD41E6BFB82007AE9F0 /* EcoRouter.h */,
+				CE5E0CD51E6BFB82007AE9F0 /* EcoRouter.m */,
+				CE6BA0001E6C07010092FC8D /* RouterTool.h */,
+				CE6BA0011E6C07010092FC8D /* RouterTool.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		CE5E0CD21E6BFB68007AE9F0 /* ModuleA */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CDC1E6C02BA007AE9F0 /* RouterList */,
+				CE5E0CDD1E6C02BA007AE9F0 /* View */,
+				CE5E0CDB1E6C02BA007AE9F0 /* Controllers */,
+			);
+			path = ModuleA;
+			sourceTree = "<group>";
+		};
+		CE5E0CD31E6BFB68007AE9F0 /* ModuleB */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CE61E6C03F3007AE9F0 /* RouterList */,
+				CE5E0CE81E6C03F3007AE9F0 /* View */,
+				CE5E0CE31E6C03F3007AE9F0 /* Controllers */,
+			);
+			path = ModuleB;
+			sourceTree = "<group>";
+		};
+		CE5E0CDB1E6C02BA007AE9F0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CE01E6C035F007AE9F0 /* ModuleAViewController.h */,
+				CE5E0CE11E6C035F007AE9F0 /* ModuleAViewController.m */,
+				CE6B9FFD1E6C05F70092FC8D /* ModuleARootViewController.h */,
+				CE6B9FFE1E6C05F70092FC8D /* ModuleARootViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE5E0CDC1E6C02BA007AE9F0 /* RouterList */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CDE1E6C02EB007AE9F0 /* ModuleARouter.plist */,
+			);
+			path = RouterList;
+			sourceTree = "<group>";
+		};
+		CE5E0CDD1E6C02BA007AE9F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE5E0CE31E6C03F3007AE9F0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CE41E6C03F3007AE9F0 /* ModuleBViewController.h */,
+				CE5E0CE51E6C03F3007AE9F0 /* ModuleBViewController.m */,
+				CE6BA0071E6C09C20092FC8D /* ModuleBRootViewController.h */,
+				CE6BA0081E6C09C20092FC8D /* ModuleBRootViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE5E0CE61E6C03F3007AE9F0 /* RouterList */ = {
+			isa = PBXGroup;
+			children = (
+				CE5E0CE71E6C03F3007AE9F0 /* ModuleBRouter.plist */,
+			);
+			path = RouterList;
+			sourceTree = "<group>";
+		};
+		CE5E0CE81E6C03F3007AE9F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE6BA0031E6C07300092FC8D /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE6BA0041E6C07300092FC8D /* BaseViewController.h */,
+				CE6BA0051E6C07300092FC8D /* BaseViewController.m */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE5E0CB51E6BFB02007AE9F0 /* EcoRouterDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE5E0CCD1E6BFB02007AE9F0 /* Build configuration list for PBXNativeTarget "EcoRouterDemo" */;
+			buildPhases = (
+				CE5E0CB21E6BFB02007AE9F0 /* Sources */,
+				CE5E0CB31E6BFB02007AE9F0 /* Frameworks */,
+				CE5E0CB41E6BFB02007AE9F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EcoRouterDemo;
+			productName = EcoRouterDemo;
+			productReference = CE5E0CB61E6BFB02007AE9F0 /* EcoRouterDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE5E0CAE1E6BFB02007AE9F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = chenlei;
+				TargetAttributes = {
+					CE5E0CB51E6BFB02007AE9F0 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = GZ2Z9VW8AJ;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CE5E0CB11E6BFB02007AE9F0 /* Build configuration list for PBXProject "EcoRouterDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE5E0CAD1E6BFB02007AE9F0;
+			productRefGroup = CE5E0CB71E6BFB02007AE9F0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE5E0CB51E6BFB02007AE9F0 /* EcoRouterDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE5E0CB41E6BFB02007AE9F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE5E0CDF1E6C02EB007AE9F0 /* ModuleARouter.plist in Resources */,
+				CE5E0CC91E6BFB02007AE9F0 /* LaunchScreen.storyboard in Resources */,
+				CE5E0CC61E6BFB02007AE9F0 /* Assets.xcassets in Resources */,
+				CE6BA00B1E6C0A2A0092FC8D /* router.html in Resources */,
+				CE5E0CC41E6BFB02007AE9F0 /* Main.storyboard in Resources */,
+				CE5E0CEA1E6C03F3007AE9F0 /* ModuleBRouter.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE5E0CB21E6BFB02007AE9F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE6B9FFF1E6C05F70092FC8D /* ModuleARootViewController.m in Sources */,
+				CE6BA0061E6C07300092FC8D /* BaseViewController.m in Sources */,
+				CE6BA0021E6C07010092FC8D /* RouterTool.m in Sources */,
+				CE5E0CC11E6BFB02007AE9F0 /* MainViewController.m in Sources */,
+				CE5E0CD61E6BFB82007AE9F0 /* EcoRouter.m in Sources */,
+				CE5E0CE91E6C03F3007AE9F0 /* ModuleBViewController.m in Sources */,
+				CE5E0CE21E6C035F007AE9F0 /* ModuleAViewController.m in Sources */,
+				CE5E0CBE1E6BFB02007AE9F0 /* AppDelegate.m in Sources */,
+				CE5E0CBB1E6BFB02007AE9F0 /* main.m in Sources */,
+				CE6BA0091E6C09C20092FC8D /* ModuleBRootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CE5E0CC21E6BFB02007AE9F0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE5E0CC31E6BFB02007AE9F0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CE5E0CC71E6BFB02007AE9F0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE5E0CC81E6BFB02007AE9F0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CE5E0CCB1E6BFB02007AE9F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CE5E0CCC1E6BFB02007AE9F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE5E0CCE1E6BFB02007AE9F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GZ2Z9VW8AJ;
+				INFOPLIST_FILE = EcoRouterDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenlei.router.EcoRouterDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CE5E0CCF1E6BFB02007AE9F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GZ2Z9VW8AJ;
+				INFOPLIST_FILE = EcoRouterDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenlei.router.EcoRouterDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE5E0CB11E6BFB02007AE9F0 /* Build configuration list for PBXProject "EcoRouterDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE5E0CCB1E6BFB02007AE9F0 /* Debug */,
+				CE5E0CCC1E6BFB02007AE9F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE5E0CCD1E6BFB02007AE9F0 /* Build configuration list for PBXNativeTarget "EcoRouterDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE5E0CCE1E6BFB02007AE9F0 /* Debug */,
+				CE5E0CCF1E6BFB02007AE9F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CE5E0CAE1E6BFB02007AE9F0 /* Project object */;
+}
