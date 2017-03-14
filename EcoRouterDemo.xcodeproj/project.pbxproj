@@ -14,15 +14,15 @@
 		CE5E0CC61E6BFB02007AE9F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CC51E6BFB02007AE9F0 /* Assets.xcassets */; };
 		CE5E0CC91E6BFB02007AE9F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CC71E6BFB02007AE9F0 /* LaunchScreen.storyboard */; };
 		CE5E0CD61E6BFB82007AE9F0 /* EcoRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CD51E6BFB82007AE9F0 /* EcoRouter.m */; };
-		CE5E0CDF1E6C02EB007AE9F0 /* ModuleARouter.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CDE1E6C02EB007AE9F0 /* ModuleARouter.plist */; };
 		CE5E0CE21E6C035F007AE9F0 /* ModuleAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CE11E6C035F007AE9F0 /* ModuleAViewController.m */; };
 		CE5E0CE91E6C03F3007AE9F0 /* ModuleBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E0CE51E6C03F3007AE9F0 /* ModuleBViewController.m */; };
-		CE5E0CEA1E6C03F3007AE9F0 /* ModuleBRouter.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5E0CE71E6C03F3007AE9F0 /* ModuleBRouter.plist */; };
 		CE6B9FFF1E6C05F70092FC8D /* ModuleARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6B9FFE1E6C05F70092FC8D /* ModuleARootViewController.m */; };
-		CE6BA0021E6C07010092FC8D /* RouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA0011E6C07010092FC8D /* RouterTool.m */; };
-		CE6BA0061E6C07300092FC8D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA0051E6C07300092FC8D /* BaseViewController.m */; };
+		CE6BA0021E6C07010092FC8D /* EcoRouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA0011E6C07010092FC8D /* EcoRouterTool.m */; };
 		CE6BA0091E6C09C20092FC8D /* ModuleBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA0081E6C09C20092FC8D /* ModuleBRootViewController.m */; };
 		CE6BA00B1E6C0A2A0092FC8D /* router.html in Resources */ = {isa = PBXBuildFile; fileRef = CE6BA00A1E6C0A2A0092FC8D /* router.html */; };
+		CEE692DE1E78142D0047403E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE692DD1E78142D0047403E /* BaseViewController.m */; };
+		CEE692E81E7817EA0047403E /* UIViewController+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE692E71E7817EA0047403E /* UIViewController+Router.m */; };
+		CEE692EA1E78205D0047403E /* RouterList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEE692E91E78205D0047403E /* RouterList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,21 +38,22 @@
 		CE5E0CCA1E6BFB02007AE9F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE5E0CD41E6BFB82007AE9F0 /* EcoRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EcoRouter.h; sourceTree = "<group>"; };
 		CE5E0CD51E6BFB82007AE9F0 /* EcoRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EcoRouter.m; sourceTree = "<group>"; };
-		CE5E0CDE1E6C02EB007AE9F0 /* ModuleARouter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModuleARouter.plist; sourceTree = "<group>"; };
 		CE5E0CE01E6C035F007AE9F0 /* ModuleAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleAViewController.h; sourceTree = "<group>"; };
 		CE5E0CE11E6C035F007AE9F0 /* ModuleAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleAViewController.m; sourceTree = "<group>"; };
 		CE5E0CE41E6C03F3007AE9F0 /* ModuleBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleBViewController.h; sourceTree = "<group>"; };
 		CE5E0CE51E6C03F3007AE9F0 /* ModuleBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleBViewController.m; sourceTree = "<group>"; };
-		CE5E0CE71E6C03F3007AE9F0 /* ModuleBRouter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModuleBRouter.plist; sourceTree = "<group>"; };
 		CE6B9FFD1E6C05F70092FC8D /* ModuleARootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleARootViewController.h; sourceTree = "<group>"; };
 		CE6B9FFE1E6C05F70092FC8D /* ModuleARootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleARootViewController.m; sourceTree = "<group>"; };
-		CE6BA0001E6C07010092FC8D /* RouterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterTool.h; sourceTree = "<group>"; };
-		CE6BA0011E6C07010092FC8D /* RouterTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTool.m; sourceTree = "<group>"; };
-		CE6BA0041E6C07300092FC8D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		CE6BA0051E6C07300092FC8D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		CE6BA0001E6C07010092FC8D /* EcoRouterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EcoRouterTool.h; sourceTree = "<group>"; };
+		CE6BA0011E6C07010092FC8D /* EcoRouterTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EcoRouterTool.m; sourceTree = "<group>"; };
 		CE6BA0071E6C09C20092FC8D /* ModuleBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModuleBRootViewController.h; sourceTree = "<group>"; };
 		CE6BA0081E6C09C20092FC8D /* ModuleBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModuleBRootViewController.m; sourceTree = "<group>"; };
 		CE6BA00A1E6C0A2A0092FC8D /* router.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = router.html; sourceTree = "<group>"; };
+		CEE692DC1E78142D0047403E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		CEE692DD1E78142D0047403E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		CEE692E61E7817EA0047403E /* UIViewController+Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Router.h"; sourceTree = "<group>"; };
+		CEE692E71E7817EA0047403E /* UIViewController+Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Router.m"; sourceTree = "<group>"; };
+		CEE692E91E78205D0047403E /* RouterList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RouterList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +114,7 @@
 		CE5E0CD01E6BFB68007AE9F0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CEE692DB1E78142D0047403E /* BaseViewController */,
 				CE5E0CD11E6BFB68007AE9F0 /* Router */,
 			);
 			path = Common;
@@ -121,11 +123,12 @@
 		CE5E0CD11E6BFB68007AE9F0 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				CE6BA0031E6C07300092FC8D /* BaseViewController */,
+				CEE692E51E7817DE0047403E /* Category */,
 				CE5E0CD41E6BFB82007AE9F0 /* EcoRouter.h */,
 				CE5E0CD51E6BFB82007AE9F0 /* EcoRouter.m */,
-				CE6BA0001E6C07010092FC8D /* RouterTool.h */,
-				CE6BA0011E6C07010092FC8D /* RouterTool.m */,
+				CE6BA0001E6C07010092FC8D /* EcoRouterTool.h */,
+				CE6BA0011E6C07010092FC8D /* EcoRouterTool.m */,
+				CEE692E91E78205D0047403E /* RouterList.plist */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -133,7 +136,6 @@
 		CE5E0CD21E6BFB68007AE9F0 /* ModuleA */ = {
 			isa = PBXGroup;
 			children = (
-				CE5E0CDC1E6C02BA007AE9F0 /* RouterList */,
 				CE5E0CDD1E6C02BA007AE9F0 /* View */,
 				CE5E0CDB1E6C02BA007AE9F0 /* Controllers */,
 			);
@@ -143,7 +145,6 @@
 		CE5E0CD31E6BFB68007AE9F0 /* ModuleB */ = {
 			isa = PBXGroup;
 			children = (
-				CE5E0CE61E6C03F3007AE9F0 /* RouterList */,
 				CE5E0CE81E6C03F3007AE9F0 /* View */,
 				CE5E0CE31E6C03F3007AE9F0 /* Controllers */,
 			);
@@ -159,14 +160,6 @@
 				CE6B9FFE1E6C05F70092FC8D /* ModuleARootViewController.m */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		CE5E0CDC1E6C02BA007AE9F0 /* RouterList */ = {
-			isa = PBXGroup;
-			children = (
-				CE5E0CDE1E6C02EB007AE9F0 /* ModuleARouter.plist */,
-			);
-			path = RouterList;
 			sourceTree = "<group>";
 		};
 		CE5E0CDD1E6C02BA007AE9F0 /* View */ = {
@@ -187,14 +180,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		CE5E0CE61E6C03F3007AE9F0 /* RouterList */ = {
-			isa = PBXGroup;
-			children = (
-				CE5E0CE71E6C03F3007AE9F0 /* ModuleBRouter.plist */,
-			);
-			path = RouterList;
-			sourceTree = "<group>";
-		};
 		CE5E0CE81E6C03F3007AE9F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,13 +187,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		CE6BA0031E6C07300092FC8D /* BaseViewController */ = {
+		CEE692DB1E78142D0047403E /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CE6BA0041E6C07300092FC8D /* BaseViewController.h */,
-				CE6BA0051E6C07300092FC8D /* BaseViewController.m */,
+				CEE692DC1E78142D0047403E /* BaseViewController.h */,
+				CEE692DD1E78142D0047403E /* BaseViewController.m */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		CEE692E51E7817DE0047403E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				CEE692E61E7817EA0047403E /* UIViewController+Router.h */,
+				CEE692E71E7817EA0047403E /* UIViewController+Router.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,12 +264,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5E0CDF1E6C02EB007AE9F0 /* ModuleARouter.plist in Resources */,
+				CEE692EA1E78205D0047403E /* RouterList.plist in Resources */,
 				CE5E0CC91E6BFB02007AE9F0 /* LaunchScreen.storyboard in Resources */,
 				CE5E0CC61E6BFB02007AE9F0 /* Assets.xcassets in Resources */,
 				CE6BA00B1E6C0A2A0092FC8D /* router.html in Resources */,
 				CE5E0CC41E6BFB02007AE9F0 /* Main.storyboard in Resources */,
-				CE5E0CEA1E6C03F3007AE9F0 /* ModuleBRouter.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,8 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE6B9FFF1E6C05F70092FC8D /* ModuleARootViewController.m in Sources */,
-				CE6BA0061E6C07300092FC8D /* BaseViewController.m in Sources */,
-				CE6BA0021E6C07010092FC8D /* RouterTool.m in Sources */,
+				CEE692E81E7817EA0047403E /* UIViewController+Router.m in Sources */,
+				CEE692DE1E78142D0047403E /* BaseViewController.m in Sources */,
+				CE6BA0021E6C07010092FC8D /* EcoRouterTool.m in Sources */,
 				CE5E0CC11E6BFB02007AE9F0 /* MainViewController.m in Sources */,
 				CE5E0CD61E6BFB82007AE9F0 /* EcoRouter.m in Sources */,
 				CE5E0CE91E6C03F3007AE9F0 /* ModuleBViewController.m in Sources */,
