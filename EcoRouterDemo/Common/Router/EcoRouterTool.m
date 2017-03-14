@@ -71,7 +71,7 @@
     [self openUrl:url withUserInfo:nil from:viewController];
 }
 
-//打开RouterLink自动跳转
+//打开RouterLink自动跳转（通过classname）
 + (void)openClass:(NSString *)className withUserInfo:(NSDictionary *)userInfo from:(UIViewController *)viewController
 {
     

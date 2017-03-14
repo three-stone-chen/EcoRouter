@@ -51,7 +51,7 @@
 + (UIViewController *)openUrl:(NSString *)url withUserInfo:(NSDictionary *)userInfo;
 
 /**
- *  打开RouterLink自动跳转
+ *  打开RouterLink自动跳转（通过URL，不带UserInfo）
  *
  *  @param url              路由地址
  *  @param viewController   使用该方法的对象根试图（导航器或控制器）
@@ -60,7 +60,7 @@
 + (void)openUrl:(NSString *)url from:(UIViewController *)viewController;
 
 /**
- *  通过类名获取URL，打开RouterLink自动跳转
+ *  打开RouterLink自动跳转（通过classname）
  *
  *  @param className        跳转类类名
  *  @param userInfo         参数
@@ -70,7 +70,7 @@
 + (void)openClass:(NSString *)className withUserInfo:(NSDictionary *)userInfo from:(UIViewController *)viewController;
 
 /**
- *  打开RouterLink自动跳转
+ *  打开RouterLink自动跳转（通过URL，带UserInfo）
  *
  *  @param url              路由地址
  *  @param viewController   使用该方法的对象根试图（导航器或控制器）
