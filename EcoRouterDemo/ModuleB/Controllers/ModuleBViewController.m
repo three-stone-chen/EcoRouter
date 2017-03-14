@@ -23,10 +23,9 @@
 }
 
 ///跳转
-- (void)go
+- (void)actionGo
 {
-    NSDictionary *routerDic = [RouterTool getRouterPlistName:@"ModuleARouter"];
-    [self.navigationController pushViewController:[RouterTool openUrl:routerDic[@"ModuleAViewController"]] animated:YES];
+    [EcoRouterTool openClass:@"ModuleAViewController" withUserInfo:@{@"key1":@"1",@"key2":@"2"} from:self.navigationController];
 }
 
 @end

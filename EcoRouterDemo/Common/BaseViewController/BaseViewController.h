@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RouterTool.h"
+#import "EcoRouterTool.h"
 
 @interface BaseViewController : UIViewController
-
-@property (nonatomic, strong) NSDictionary *paramDic;
 
 ///添加左Item
 - (void)addLeftItem;

@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "EcoRouter.h"
+#import "EcoRouterTool.h"
 #import <WebKit/WebKit.h>
 #import "BaseViewController.h"
 
@@ -31,10 +31,28 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.wkWebView.navigationDelegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.wkWebView.navigationDelegate = nil;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    self.wkWebView.navigationDelegate = nil;
+    self.wkWebView = nil;
 }
 
 #pragma mark - 初始化UI
@@ -49,7 +67,6 @@
     if (!_wkWebView)
     {
         _wkWebView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-        _wkWebView.navigationDelegate = self;
     }
     return _wkWebView;
 }
@@ -80,23 +97,10 @@
 - (void)doUrl:(NSString *)urlString
 {
     NSLog(@"urlString +==== %@",urlString);
-    UIViewController *viewController = [EcoRouter objectForURL:urlString];
-    if (viewController && [viewController isKindOfClass:[UIViewController class]])
-    {
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
-        [self presentViewController:nav animated:YES completion:^{
-            
-        }];
-    }
-    else
-    {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"未匹配到页面" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:cancelAction];
-        [self presentViewController:alertController animated:YES completion:^{
-            
-        }];
-    }
+    [EcoRouterTool openUrl:urlString from:self];
 }
+
+
+
 
 @end

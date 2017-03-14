@@ -14,11 +14,6 @@
 
 @implementation ModuleARootViewController
 
-+ (void)load
-{
-    [RouterTool registerRouterListFromPlist:@"ModuleARouter"];
-}
-
 
 - (void)viewDidLoad
 {
@@ -33,10 +28,9 @@
 }
 
 ///跳转
-- (void)go
+- (void)actionGo
 {
-    NSDictionary *routerDic = [RouterTool getRouterPlistName:@"ModuleARouter"];
-    [self.navigationController pushViewController:[RouterTool openUrl:routerDic[@"ModuleAViewController"]] animated:YES];
+    [EcoRouterTool openClass:@"ModuleAViewController" withUserInfo:nil from:self.navigationController];
 }
 /*
 #pragma mark - Navigation

@@ -14,11 +14,6 @@
 
 @implementation ModuleBRootViewController
 
-+ (void)load
-{
-    [RouterTool registerRouterListFromPlist:@"ModuleBRouter"];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"ModuleB_Root";
@@ -31,10 +26,9 @@
 }
 
 
-- (void)go
+- (void)actionGo
 {
-    NSDictionary *routerDic = [RouterTool getRouterPlistName:@"ModuleBRouter"];
-    [self.navigationController pushViewController:[RouterTool openUrl:routerDic[@"ModuleBViewController"]] animated:YES];
+    [EcoRouterTool openClass:@"ModuleBViewController" withUserInfo:nil from:self.navigationController];
 }
 /*
 #pragma mark - Navigation

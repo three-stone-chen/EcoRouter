@@ -87,20 +87,20 @@
 
 - (void)addLeftItem
 {
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionCancel)];
     self.navigationItem.leftBarButtonItem = cancelItem;
 }
 
 
 - (void)addRightItem
 {
-    UIBarButtonItem *goItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(go)];
+    UIBarButtonItem *goItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(actionGo)];
     self.navigationItem.rightBarButtonItem = goItem;
 }
 
 #pragma mark - Action
 ///取消
-- (void)cancel
+- (void)actionCancel
 {
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -108,7 +108,7 @@
 }
 
 ///跳转
-- (void)go
+- (void)actionGo
 {
     
 }
