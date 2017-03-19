@@ -18,4 +18,7 @@
 ///添加右Item
 - (void)addRightItem;
 
+///本地调用
+- (BOOL)performTarget:(NSString *)targetName action:(NSString *)actionName parameters:(NSDictionary *)paramsDic from:(UIViewController *)viewController completion:(EcoRouterCallback)routerCallback;
+
 @end

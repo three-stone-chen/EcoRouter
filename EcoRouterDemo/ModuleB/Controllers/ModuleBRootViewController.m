@@ -28,7 +28,7 @@
 
 - (void)actionGo
 {
-    [EcoRouter performTarget:@"ModuleB"
+    [self performTarget:@"ModuleB"
                       action:@"B"
                   parameters:nil
                         from:self.navigationController

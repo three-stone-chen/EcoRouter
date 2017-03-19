@@ -25,7 +25,7 @@
 ///跳转
 - (void)actionGo
 {
-    [EcoRouter performTarget:@"ModuleB"
+    [self performTarget:@"ModuleB"
                       action:@"B"
                   parameters:@{@"key":@"B界面"}
                         from:self.navigationController
