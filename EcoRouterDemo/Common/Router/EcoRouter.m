@@ -2,335 +2,215 @@
 //  EcoRouter.m
 //  EcoRouterDemo
 //
-//  Created by 陈磊 on 2017/3/5.
+//  Created by 陈磊 on 2017/3/14.
 //  Copyright © 2017年 chenlei. All rights reserved.
 //
 
 #import "EcoRouter.h"
-#import <objc/runtime.h>
-
-static NSString * const Eco_ROUTER_WILDCARD_CHARACTER = @"~";
-static NSString *specialCharacters = @"/?&.";
-
-NSString *const EcoRouterParameterURL = @"EcoRouterParameterURL";
-NSString *const EcoRouterParameterCompletion = @"EcoRouterParameterCompletion";
-NSString *const EcoRouterParameterUserInfo = @"EcoRouterParameterUserInfo";
-
+#import "NSObject+PerformSelector.h"
 
 @interface EcoRouter ()
-/**
- *  保存了所有已注册的 URL
- *  结构类似 @{@"beauty": @{@":id": {@"_", [block copy]}}}
- */
-@property (nonatomic) NSMutableDictionary *routes;
+
+/** 保存Target实例，在频繁调用时保存。 */
+@property (nonatomic, strong) NSMutableDictionary *cachedTarget;
+
+/** EcoRouter的参数配置数据对象 */
+@property (nonatomic, strong) EcoRouterConfigModel *routerConfig;
+
+/** APP的映射表 */
+@property (nonatomic, strong, readonly) NSDictionary *urlMapDic;
+
 @end
 
 @implementation EcoRouter
 
-+ (instancetype)sharedInstance
+#pragma mark - public methods
+
+#pragma mark - 获取单例
++ (instancetype)shared
 {
-    static EcoRouter *instance = nil;
+    static EcoRouter *ecoRouter;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
+        ecoRouter = [[EcoRouter alloc] init];
     });
-    return instance;
+    return ecoRouter;
 }
 
-+ (void)registerURLPattern:(NSString *)URLPattern toHandler:(EcoRouterHandler)handler
+#pragma mark - 配置EcoRouter
+
++ (void)setupConfig:(EcoRouterConfigBlock)routerConfig
 {
-    [[self sharedInstance] addURLPattern:URLPattern andHandler:handler];
+    return [[self shared] setupConfig:routerConfig];
 }
 
-+ (void)deregisterURLPattern:(NSString *)URLPattern
+
+- (void)setupConfig:(EcoRouterConfigBlock)config
 {
-    [[self sharedInstance] removeURLPattern:URLPattern];
+    !config ? nil : config(self.routerConfig);
+    _urlMapDic = [NSDictionary dictionaryWithContentsOfFile:self.routerConfig.urlRouteMapFilePath];
+    NSLog(@"_urlMapDic====%@",_urlMapDic);
 }
 
-+ (void)openURL:(NSString *)URL
+- (EcoRouterConfigModel *)routerConfig
 {
-    [self openURL:URL completion:nil];
-}
-
-+ (void)openURL:(NSString *)URL completion:(void (^)(id result))completion
-{
-    [self openURL:URL withUserInfo:nil completion:completion];
-}
-
-+ (void)openURL:(NSString *)URL withUserInfo:(NSDictionary *)userInfo completion:(void (^)(id result))completion
-{
-    /**
-     *  changed by clei 2017-3-5
-     */
-    //URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    URL = [URL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSMutableDictionary *parameters = [[self sharedInstance] extractParametersFromURL:URL];
+    if (!_routerConfig)
+    {
+        _routerConfig = [[EcoRouterConfigModel alloc] init];
+    }
     
-    [parameters enumerateKeysAndObjectsUsingBlock:^(id key, NSString *obj, BOOL *stop) {
-        if ([obj isKindOfClass:[NSString class]])
+    return _routerConfig;
+}
+
+#pragma mark - 打开Link地址
+/*
+ scheme://[User]:[Password]@[target]/[action]?[params]#[#Fragment]
+ url sample:
+ aaa://eco:123@targetA/actionB?id=1234
+ */
+
++ (BOOL)openUrl:(NSString *)url from:(UIViewController *)viewController completion:(EcoRouterCallback)routerCallback
+{
+    return [[self shared] openUrl:url from:(UIViewController *)viewController completion:routerCallback];
+}
+
+
+- (BOOL)openUrl:(NSString *)url from:(UIViewController *)viewController completion:(EcoRouterCallback)routerCallback
+{
+    EcoRouterUrlModel *routerUrlModel = [EcoRouterUrlModel parseObjectWithURL:url];
+    
+    if (!routerUrlModel)
+    {
+        //调用的Url无法解析
+        if ([self.exceptionDelegate respondsToSelector:@selector(routerCannotParseUrl:)])
         {
-            //parameters[key] = [obj stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            parameters[key] = [obj stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            [self.exceptionDelegate routerCannotParseUrl:url];
         }
-    }];
-    
-    if (parameters) {
-        EcoRouterHandler handler = parameters[@"block"];
-        if (completion) {
-            parameters[EcoRouterParameterCompletion] = completion;
-        }
-        if (userInfo) {
-            parameters[EcoRouterParameterUserInfo] = userInfo;
-        }
-        if (handler) {
-            [parameters removeObjectForKey:@"block"];
-            handler(parameters);
-        }
+        return NO;
     }
-}
-
-+ (BOOL)canOpenURL:(NSString *)URL
-{
-    return [[self sharedInstance] extractParametersFromURL:URL] ? YES : NO;
-}
-
-+ (NSString *)generateURLWithPattern:(NSString *)pattern parameters:(NSArray *)parameters
-{
-    NSInteger startIndexOfColon = 0;
-    
-    NSMutableArray *placeholders = [NSMutableArray array];
-    
-    for (int i = 0; i < pattern.length; i++) {
-        NSString *character = [NSString stringWithFormat:@"%c", [pattern characterAtIndex:i]];
-        if ([character isEqualToString:@":"]) {
-            startIndexOfColon = i;
+    else if (![routerUrlModel.scheme isEqualToString:self.routerConfig.urlScheme])
+    {
+        //调用的Url的scheme不匹配
+        if ([self.exceptionDelegate respondsToSelector:@selector(routerCannotMatchScheme:)])
+        {
+            [self.exceptionDelegate routerCannotMatchScheme:routerUrlModel.scheme];
         }
-        if ([specialCharacters rangeOfString:character].location != NSNotFound && i > (startIndexOfColon + 1) && startIndexOfColon) {
-            NSRange range = NSMakeRange(startIndexOfColon, i - startIndexOfColon);
-            NSString *placeholder = [pattern substringWithRange:range];
-            if (![self checkIfContainsSpecialCharacter:placeholder]) {
-                [placeholders addObject:placeholder];
-                startIndexOfColon = 0;
-            }
+        return NO;
+    }
+    else if ((![routerUrlModel.user isEqualToString:self.routerConfig.user] ||
+              ![routerUrlModel.password isEqualToString:self.routerConfig.password])&&
+             !self.routerConfig.urlVerifySkip)
+    {
+        //远程调用账号密码错误(非法调用)
+        if ([self.exceptionDelegate respondsToSelector:@selector(routerCannotMatchUserOrPasswordWithUser:andPassword:)])
+        {
+            [self.exceptionDelegate routerCannotMatchUserOrPasswordWithUser:routerUrlModel.user
+                                                                andPassword:routerUrlModel.password];
         }
-        if (i == pattern.length - 1 && startIndexOfColon) {
-            NSRange range = NSMakeRange(startIndexOfColon, i - startIndexOfColon + 1);
-            NSString *placeholder = [pattern substringWithRange:range];
-            if (![self checkIfContainsSpecialCharacter:placeholder]) {
-                [placeholders addObject:placeholder];
-            }
+        return NO;
+    }
+
+
+    BOOL result = [self performTarget:routerUrlModel.target action:routerUrlModel.action parameters:routerUrlModel.paramsDic from:viewController completion:routerCallback];
+
+    return result;
+}
+
+
++ (BOOL)performTarget:(NSString *)targetName action:(NSString *)actionName parameters:(NSDictionary *)paramsDic from:(UIViewController *)viewController completion:(EcoRouterCallback)routerCallback
+{
+    return [[self shared] performTarget:targetName action:actionName parameters:paramsDic from:viewController completion:routerCallback];
+}
+
+
+- (BOOL)performTarget:(NSString *)targetName action:(NSString *)actionName parameters:(NSDictionary *)paramsDic from:(UIViewController *)viewController completion:(EcoRouterCallback)routerCallback
+{
+    
+    NSString *targetClassString = [NSString stringWithFormat:@"%@Filter", targetName];
+    NSString *actionString = [NSString stringWithFormat:@"%@Action", actionName];
+    NSString *openClassName = self.urlMapDic[targetName][actionName];
+    
+    NSMutableDictionary *newParamsDic = nil;
+
+    if (paramsDic)
+    {
+        newParamsDic = [NSMutableDictionary dictionaryWithDictionary:paramsDic];
+    }
+    else
+    {
+        newParamsDic = [NSMutableDictionary dictionaryWithCapacity:0];
+    }
+    if (routerCallback)
+    {
+        newParamsDic[@"callback"] = routerCallback;
+    }
+
+    
+    if (!openClassName.length)
+    {
+        //映射不到相关类
+        if ([self.exceptionDelegate respondsToSelector:@selector(routerCannotMapClass:)])
+        {
+            [self.exceptionDelegate routerCannotMapClass:openClassName];
         }
-    }
-    
-    __block NSString *parsedResult = pattern;
-    
-    [placeholders enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        idx = parameters.count > idx ? idx : parameters.count - 1;
-        parsedResult = [parsedResult stringByReplacingOccurrencesOfString:obj withString:parameters[idx]];
-    }];
-    
-    return parsedResult;
-}
-
-+ (id)objectForURL:(NSString *)URL withUserInfo:(NSDictionary *)userInfo
-{
-    EcoRouter *router = [EcoRouter sharedInstance];
-    
-    //URL = [URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    URL = [URL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSMutableDictionary *parameters = [router extractParametersFromURL:URL];
-    EcoRouterObjectHandler handler = parameters[@"block"];
-    
-    if (handler) {
-        if (userInfo) {
-            parameters[EcoRouterParameterUserInfo] = userInfo;
-        }
-        [parameters removeObjectForKey:@"block"];
-        return handler(parameters);
-    }
-    return nil;
-}
-
-+ (id)objectForURL:(NSString *)URL
-{
-    return [self objectForURL:URL withUserInfo:nil];
-}
-
-+ (void)registerURLPattern:(NSString *)URLPattern toObjectHandler:(EcoRouterObjectHandler)handler
-{
-    [[self sharedInstance] addURLPattern:URLPattern andObjectHandler:handler];
-}
-
-- (void)addURLPattern:(NSString *)URLPattern andHandler:(EcoRouterHandler)handler
-{
-    NSMutableDictionary *subRoutes = [self addURLPattern:URLPattern];
-    if (handler && subRoutes) {
-        subRoutes[@"_"] = [handler copy];
-    }
-}
-
-- (void)addURLPattern:(NSString *)URLPattern andObjectHandler:(EcoRouterObjectHandler)handler
-{
-    NSMutableDictionary *subRoutes = [self addURLPattern:URLPattern];
-    if (handler && subRoutes) {
-        subRoutes[@"_"] = [handler copy];
-    }
-}
-
-- (NSMutableDictionary *)addURLPattern:(NSString *)URLPattern
-{
-    NSArray *pathComponents = [self pathComponentsFromURL:URLPattern];
-    
-    NSInteger index = 0;
-    NSMutableDictionary* subRoutes = self.routes;
-    
-    while (index < pathComponents.count) {
-        NSString* pathComponent = pathComponents[index];
-        if (![subRoutes objectForKey:pathComponent]) {
-            subRoutes[pathComponent] = [[NSMutableDictionary alloc] init];
-        }
-        subRoutes = subRoutes[pathComponent];
-        index++;
-    }
-    return subRoutes;
-}
-
-#pragma mark - Utils
-
-- (NSMutableDictionary *)extractParametersFromURL:(NSString *)url
-{
-    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
-    
-    parameters[EcoRouterParameterURL] = url;
-    
-    NSMutableDictionary* subRoutes = self.routes;
-    NSArray* pathComponents = [self pathComponentsFromURL:url];
-    
-    BOOL found = NO;
-    // borrowed from HHRouter(https://github.com/Huohua/HHRouter)
-    for (NSString* pathComponent in pathComponents) {
-        
-        // 对 key 进行排序，这样可以把 ~ 放到最后
-        NSArray *subRoutesKeys =[subRoutes.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-            return [obj1 compare:obj2];
-        }];
-        
-        for (NSString* key in subRoutesKeys) {
-            if ([key isEqualToString:pathComponent] || [key isEqualToString:Eco_ROUTER_WILDCARD_CHARACTER]) {
-                found = YES;
-                subRoutes = subRoutes[key];
-                break;
-            } else if ([key hasPrefix:@":"]) {
-                found = YES;
-                subRoutes = subRoutes[key];
-                NSString *newKey = [key substringFromIndex:1];
-                NSString *newPathComponent = pathComponent;
-                // 再做一下特殊处理，比如 :id.html -> :id
-                if ([self.class checkIfContainsSpecialCharacter:key]) {
-                    NSCharacterSet *specialCharacterSet = [NSCharacterSet characterSetWithCharactersInString:specialCharacters];
-                    NSRange range = [key rangeOfCharacterFromSet:specialCharacterSet];
-                    if (range.location != NSNotFound) {
-                        // 把 pathComponent 后面的部分也去掉
-                        newKey = [newKey substringToIndex:range.location - 1];
-                        NSString *suffixToStrip = [key substringFromIndex:range.location];
-                        newPathComponent = [newPathComponent stringByReplacingOccurrencesOfString:suffixToStrip withString:@""];
-                    }
-                }
-                parameters[newKey] = newPathComponent;
-                break;
-            }
-        }
-        
-        // 如果没有找到该 pathComponent 对应的 handler，则以上一层的 handler 作为 fallback
-        if (!found && !subRoutes[@"_"]) {
-            return nil;
-        }
-    }
-    
-    // Extract Params From Query.
-    NSArray* pathInfo = [url componentsSeparatedByString:@"?"];
-    if (pathInfo.count > 1) {
-        NSString* parametersString = [pathInfo objectAtIndex:1];
-        NSArray* paramStringArr = [parametersString componentsSeparatedByString:@"&"];
-        for (NSString* paramString in paramStringArr) {
-            NSArray* paramArr = [paramString componentsSeparatedByString:@"="];
-            if (paramArr.count > 1) {
-                NSString* key = [paramArr objectAtIndex:0];
-                NSString* value = [paramArr objectAtIndex:1];
-                parameters[key] = value;
-            }
-        }
-    }
-    
-    if (subRoutes[@"_"]) {
-        parameters[@"block"] = [subRoutes[@"_"] copy];
-    }
-    
-    return parameters;
-}
-
-- (void)removeURLPattern:(NSString *)URLPattern
-{
-    NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:[self pathComponentsFromURL:URLPattern]];
-    
-    // 只删除该 pattern 的最后一级
-    if (pathComponents.count >= 1) {
-        // 假如 URLPattern 为 a/b/c, components 就是 @"a.b.c" 正好可以作为 KVC 的 key
-        NSString *components = [pathComponents componentsJoinedByString:@"."];
-        NSMutableDictionary *route = [self.routes valueForKeyPath:components];
-        
-        if (route.count >= 1) {
-            NSString *lastComponent = [pathComponents lastObject];
-            [pathComponents removeLastObject];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"未匹配到页面" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancelAction];
+        [viewController presentViewController:alertController animated:YES completion:^{
             
-            // 有可能是根 key，这样就是 self.routes 了
-            route = self.routes;
-            if (pathComponents.count) {
-                NSString *componentsWithoutLast = [pathComponents componentsJoinedByString:@"."];
-                route = [self.routes valueForKeyPath:componentsWithoutLast];
-            }
-            [route removeObjectForKey:lastComponent];
-        }
-    }
-}
-
-- (NSArray*)pathComponentsFromURL:(NSString*)URL
-{
-    NSMutableArray *pathComponents = [NSMutableArray array];
-    if ([URL rangeOfString:@"://"].location != NSNotFound) {
-        NSArray *pathSegments = [URL componentsSeparatedByString:@"://"];
-        // 如果 URL 包含协议，那么把协议作为第一个元素放进去
-        [pathComponents addObject:pathSegments[0]];
-        
-        // 如果只有协议，那么放一个占位符
-        if ((pathSegments.count >= 2 && ((NSString *)pathSegments[1]).length) || pathSegments.count < 2) {
-            [pathComponents addObject:Eco_ROUTER_WILDCARD_CHARACTER];
-        }
-        
-        URL = [URL substringFromIndex:[URL rangeOfString:@"://"].location + 3];
+        }];
+        return NO;
     }
     
-    for (NSString *pathComponent in [[NSURL URLWithString:URL] pathComponents]) {
-        if ([pathComponent isEqualToString:@"/"]) continue;
-        if ([[pathComponent substringToIndex:1] isEqualToString:@"?"]) break;
-        [pathComponents addObject:pathComponent];
+    
+    id target = self.cachedTarget[targetClassString];
+    if (!target)
+    {
+        Class targetClass = NSClassFromString(targetClassString);
+        target = [[targetClass alloc] init];
     }
-    return [pathComponents copy];
+    
+    if (!target)
+    {
+        return NO;
+    }
+    
+    SEL check = NSSelectorFromString(@"checkOpenClass:actionName:params:from:");
+    if ([target respondsToSelector:check])
+    {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        BOOL result = [[target performSelector:check withObjects:@[openClassName,actionString,newParamsDic,viewController]] boolValue];
+#pragma clang diagnostic pop
+        if (!result)
+        {
+            //拒绝跳转
+            if ([self.exceptionDelegate respondsToSelector:@selector(routerForbiddenOpenClass:)])
+            {
+                [self.exceptionDelegate routerForbiddenOpenClass:openClassName];
+            }
+        }
+        
+        return result;
+    }
+    return NO;
 }
 
-- (NSMutableDictionary *)routes
+#pragma mark - 释放已保存Target类
+- (void)releaseCachedTargetWithTargetName:(NSString *)targetName
 {
-    if (!_routes) {
-        _routes = [[NSMutableDictionary alloc] init];
-    }
-    return _routes;
+    NSString *targetClassString = [NSString stringWithFormat:@"%@Filter", targetName];
+    [self.cachedTarget removeObjectForKey:targetClassString];
 }
 
-#pragma mark - Utils
-
-+ (BOOL)checkIfContainsSpecialCharacter:(NSString *)checkedString {
-    NSCharacterSet *specialCharactersSet = [NSCharacterSet characterSetWithCharactersInString:specialCharacters];
-    return [checkedString rangeOfCharacterFromSet:specialCharactersSet].location != NSNotFound;
+#pragma mark - getters and setters
+- (NSMutableDictionary *)cachedTarget
+{
+    if (_cachedTarget == nil)
+    {
+        _cachedTarget = [[NSMutableDictionary alloc] init];
+    }
+    return _cachedTarget;
 }
 
 @end

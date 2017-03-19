@@ -25,7 +25,13 @@
 ///跳转
 - (void)actionGo
 {
-    [EcoRouterTool openClass:@"ModuleBViewController" withUserInfo:nil from:self.navigationController];
+    [EcoRouter performTarget:@"ModuleB"
+                      action:@"B"
+                  parameters:@{@"key":@"B界面"}
+                        from:self.navigationController
+                  completion:^(id object) {
+                      
+                  }];
 }
 
 @end

@@ -30,7 +30,13 @@
 ///跳转
 - (void)actionGo
 {
-    [EcoRouterTool openClass:@"ModuleAViewController" withUserInfo:nil from:self.navigationController];
+    [EcoRouter performTarget:@"ModuleA"
+                      action:@"A"
+                  parameters:@{@"key1":@"1",@"key2":@"2",@"key3":@"3"}
+                        from:self.navigationController
+                  completion:^(id object) {
+        
+    }];
 }
 /*
 #pragma mark - Navigation

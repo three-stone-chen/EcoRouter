@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "EcoRouterTool.h"
 #import <WebKit/WebKit.h>
 #import "BaseViewController.h"
 
@@ -97,7 +96,7 @@
 - (void)doUrl:(NSString *)urlString
 {
     NSLog(@"urlString +==== %@",urlString);
-    [EcoRouterTool openUrl:urlString from:self];
+    [EcoRouter openUrl:urlString from:self completion:nil];
 }
 
 

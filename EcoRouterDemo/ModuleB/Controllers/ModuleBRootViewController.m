@@ -28,7 +28,13 @@
 
 - (void)actionGo
 {
-    [EcoRouterTool openClass:@"ModuleBViewController" withUserInfo:nil from:self.navigationController];
+    [EcoRouter performTarget:@"ModuleB"
+                      action:@"B"
+                  parameters:nil
+                        from:self.navigationController
+                  completion:^(id object) {
+                      NSLog(@"ModuleB-B-回调===%@",object);
+    }];
 }
 /*
 #pragma mark - Navigation

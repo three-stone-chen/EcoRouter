@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "EcoRouter.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    [EcoRouter setupConfig:^(EcoRouterConfigModel *config) {
+        config.urlScheme = @"eco";
+        config.urlRouteMapFilePath = [[NSBundle mainBundle] pathForResource:@"RouterList" ofType:@"plist"];
+    }];
     return YES;
 }
 

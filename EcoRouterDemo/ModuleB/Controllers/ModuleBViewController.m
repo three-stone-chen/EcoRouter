@@ -14,6 +14,15 @@
     [super viewDidLoad];
     
     self.title = @"ModuleB_界面B";
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        EcoRouterCallback callback =  self.paramDic[@"callback"];
+        if (callback)
+        {
+            callback(@"123456");
+        }
+    });
+
     // Do any additional setup after loading the view.
 }
 
@@ -25,7 +34,13 @@
 ///跳转
 - (void)actionGo
 {
-    [EcoRouterTool openClass:@"ModuleAViewController" withUserInfo:@{@"key1":@"1",@"key2":@"2"} from:self.navigationController];
+    [EcoRouter performTarget:@"ModuleA"
+                      action:@"A"
+                  parameters:@{@"key":@"界面A"}
+                        from:self.navigationController
+                  completion:^(id object) {
+                      
+                  }];
 }
 
 @end

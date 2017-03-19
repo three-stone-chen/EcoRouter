@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EcoRouterTool.h"
+#import "UIViewController+Router.h"
+#import "EcoRouter.h"
 
 @interface BaseViewController : UIViewController
 
