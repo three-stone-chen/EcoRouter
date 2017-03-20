@@ -32,7 +32,7 @@
 /**解析URL，返回一个url对象
  *
  * @param   urlString   url字符串
- * @return  EcoRouter对象
+ * @return  url对象
  */
 + (instancetype)parseObjectWithURL:(NSString *)urlString;
 
