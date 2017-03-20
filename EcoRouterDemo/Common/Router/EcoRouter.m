@@ -222,12 +222,13 @@
 #pragma mark - 错误提示
 - (void)addErrorTip:(NSString *)errorMsg
 {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:errorMsg preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:cancelAction];
-        [viewController presentViewController:alertController animated:YES completion:^{
-            
-        }];
+    NSLog(@"errorMsg====%@",errorMsg);
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:errorMsg preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//        [alertController addAction:cancelAction];
+//        [viewController presentViewController:alertController animated:YES completion:^{
+//            
+//        }];
 }
 
 #pragma mark - 释放已保存Target类
