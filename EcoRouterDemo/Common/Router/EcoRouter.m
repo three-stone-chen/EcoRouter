@@ -6,6 +6,15 @@
 //  Copyright © 2017年 chenlei. All rights reserved.
 //
 
+#define FILTER_SUFFIX   @"Filter"
+#define ACTION_SUFFIX   @"Action"
+
+#define URL_ERROR       @"Url解析错误"
+#define SCHEME_ERROR    @"错误调用"
+#define VERITY_ERROR    @"非法调用"
+#define NOTFOUND_ERROR  @"未找到相关页面"
+#define FORBIDDEN_ERROR @"跳转被拒绝"
+
 #import "EcoRouter.h"
 #import "NSObject+PerformSelector.h"
 
@@ -86,6 +95,10 @@
         {
             [self.exceptionDelegate routerCannotParseUrl:url];
         }
+        else
+        {
+            [self addErrorTip:URL_ERROR];
+        }
         return NO;
     }
     else if (![routerUrlModel.scheme isEqualToString:self.routerConfig.urlScheme])
@@ -94,6 +107,10 @@
         if ([self.exceptionDelegate respondsToSelector:@selector(routerCannotMatchScheme:)])
         {
             [self.exceptionDelegate routerCannotMatchScheme:routerUrlModel.scheme];
+        }
+        else
+        {
+            [self addErrorTip:SCHEME_ERROR];
         }
         return NO;
     }
@@ -106,6 +123,10 @@
         {
             [self.exceptionDelegate routerCannotMatchUserOrPasswordWithUser:routerUrlModel.user
                                                                 andPassword:routerUrlModel.password];
+        }
+        else
+        {
+            [self addErrorTip:VERITY_ERROR];
         }
         return NO;
     }
@@ -126,8 +147,8 @@
 - (BOOL)performTarget:(NSString *)targetName action:(NSString *)actionName parameters:(NSDictionary *)paramsDic from:(UIViewController *)viewController completion:(EcoRouterCallback)routerCallback
 {
     
-    NSString *targetClassString = [NSString stringWithFormat:@"%@Filter", targetName];
-    NSString *actionString = [NSString stringWithFormat:@"%@Action", actionName];
+    NSString *targetClassString = [NSString stringWithFormat:@"%@%@", targetName,FILTER_SUFFIX];
+    NSString *actionString = [NSString stringWithFormat:@"%@%@", ACTION_SUFFIX];
     NSString *openClassName = self.urlMapDic[targetName][actionName];
     
     NSMutableDictionary *newParamsDic = nil;
@@ -153,12 +174,10 @@
         {
             [self.exceptionDelegate routerCannotMapClass:openClassName];
         }
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"未匹配到页面" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:cancelAction];
-        [viewController presentViewController:alertController animated:YES completion:^{
-            
-        }];
+        else
+        {
+            [self addErrorTip:NOTFOUND_ERROR];
+        }
         return NO;
     }
     
@@ -189,6 +208,10 @@
             {
                 [self.exceptionDelegate routerForbiddenOpenClass:openClassName];
             }
+            else
+            {
+                [self addErrorTip:FORBIDDEN_ERROR];
+            }
         }
         
         return result;
@@ -196,10 +219,21 @@
     return NO;
 }
 
+#pragma mark - 错误提示
+- (void)addErrorTip:(NSString *)errorMsg
+{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:errorMsg preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancelAction];
+        [viewController presentViewController:alertController animated:YES completion:^{
+            
+        }];
+}
+
 #pragma mark - 释放已保存Target类
 - (void)releaseCachedTargetWithTargetName:(NSString *)targetName
 {
-    NSString *targetClassString = [NSString stringWithFormat:@"%@Filter", targetName];
+    NSString *targetClassString = [NSString stringWithFormat:@"%@%@", targetName,FILTER_SUFFIX];
     [self.cachedTarget removeObjectForKey:targetClassString];
 }
 
