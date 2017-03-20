@@ -148,7 +148,7 @@
 {
     
     NSString *targetClassString = [NSString stringWithFormat:@"%@%@", targetName,FILTER_SUFFIX];
-    NSString *actionString = [NSString stringWithFormat:@"%@%@", ACTION_SUFFIX];
+    NSString *actionString = [NSString stringWithFormat:@"%@%@", actionName,ACTION_SUFFIX];
     NSString *openClassName = self.urlMapDic[targetName][actionName];
     
     NSMutableDictionary *newParamsDic = nil;
